@@ -1,0 +1,27 @@
+[build-system]
+requires = ["uv_build>=0.10.0,<0.11.0"]
+build-backend = "uv_build"
+
+[project]
+name = "open-prime-rando-practice-mod"
+description = "Provides prepared binaries of Practice Mod for use with open-prime-rando"
+authors = [{name = "Henrique Gemignani"}]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+requires-python = ">=3.11"
+dynamic = ["version"]
+license = "GPL-3.0"
+
+dependencies = [
+]
+
+# Entry Points for PyInstaller
+[project.entry-points.pyinstaller40]
+hook-dirs = "open_prime_rando_practice_mod.__pyinstaller:get_hook_dirs"
+
