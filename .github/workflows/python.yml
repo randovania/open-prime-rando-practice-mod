@@ -32,6 +32,8 @@ jobs:
   wheel:
     runs-on: ubuntu-latest
     name: Wheel
+    needs:
+      - elf
 
     steps:
       - name: Checkout
