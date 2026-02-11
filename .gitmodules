@@ -1,0 +1,3 @@
+[submodule "external/prime2-practice-mod"]
+	path = external/prime2-practice-mod
+	url = https://github.com/MetroidPrimeModding/prime2-practice-mod

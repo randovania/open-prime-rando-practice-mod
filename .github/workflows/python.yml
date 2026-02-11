@@ -11,9 +11,9 @@ on:
 
 jobs:
   elf:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: Build Practice Mod ELFs
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -21,6 +21,14 @@ jobs:
           fetch-depth: 0
           submodules: 'recursive'
 
+      - name: Build
+        run: ./build-elf.sh src/open_prime_rando_practice_mod/elfs/gc_ntsc_full.elf
+
+      - name: Store the elf
+        uses: actions/upload-artifact@v6
+        with:
+          name: practice-mod-elf
+          path: src/open_prime_rando_practice_mod/elfs/gc_ntsc_full.elf
   wheel:
     runs-on: ubuntu-latest
     name: Wheel
@@ -42,6 +50,12 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: "3.13"
+
+      - name: Download the elf
+        uses: actions/download-artifact@v7
+        with:
+          name: practice-mod-elf
+          path: src/open_prime_rando_practice_mod/elfs/
 
       - name: build
         run: PYTHONWARNINGS=error uv build
