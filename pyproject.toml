@@ -25,3 +25,10 @@ dependencies = [
 [project.entry-points.pyinstaller40]
 hook-dirs = "open_prime_rando_practice_mod.__pyinstaller:get_hook_dirs"
 
+
+[tool.ruff]
+line-length = 120
+
+extend-exclude = [
+    "external/",
+]
