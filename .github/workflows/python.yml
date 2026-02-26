@@ -25,7 +25,7 @@ jobs:
         run: ./build-elf.sh src/open_prime_rando_practice_mod/elfs/gc_ntsc_full.elf
 
       - name: Store the elf
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: practice-mod-elf
           path: src/open_prime_rando_practice_mod/elfs/gc_ntsc_full.elf
@@ -61,7 +61,7 @@ jobs:
         run: PYTHONWARNINGS=error uv build
 
       - name: Store the packages
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: python-package-distributions
           path: dist
