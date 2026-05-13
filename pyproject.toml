@@ -1,6 +1,9 @@
 [build-system]
-requires = ["uv_build>=0.10.0,<0.11.0"]
-build-backend = "uv_build"
+requires = [
+    "setuptools>=61.2",
+    "setuptools_scm[toml]>=3.4.3"
+]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "open-prime-rando-practice-mod"
@@ -15,7 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 license = "GPL-3.0-or-later"
-version = "0.1.0"
+dynamic = ["version"]
 requires-python = ">=3.11"
 
 dependencies = [
@@ -25,6 +28,10 @@ dependencies = [
 [project.entry-points.pyinstaller40]
 hook-dirs = "open_prime_rando_practice_mod.__pyinstaller:get_hook_dirs"
 
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+write_to = "src/open_prime_rando_practice_mod/version.py"
+scm.git.describe_command = "git describe --dirty --tags --long --match v[0-9]*"
 
 [tool.ruff]
 line-length = 120
