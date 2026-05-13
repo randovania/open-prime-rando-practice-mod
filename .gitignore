@@ -20,3 +20,4 @@ sdist/
 
 # Docker build files
 cmake-build-*
+.vscode/
