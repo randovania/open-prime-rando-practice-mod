@@ -23,3 +23,5 @@ cmake-build-*
 .vscode/
 
 src/open_prime_rando_practice_mod/version.py
+
+uv.lock

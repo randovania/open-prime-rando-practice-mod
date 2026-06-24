@@ -12,8 +12,12 @@ class PracticeModMode(str, Enum):
     full = "full"
 
 
+def get_filename_for(version: GameVersion, practice_mode: PracticeModMode) -> str:
+    return f"{version.value}_{practice_mode.value}.elf"
+
+
 def get_elf_for(version: GameVersion, practice_mode: PracticeModMode) -> Path:
-    elf_path = Path(__file__).parent.joinpath("elfs", f"{version.value}_{practice_mode.value}.elf")
+    elf_path = Path(__file__).parent.joinpath("elfs", get_filename_for(version, practice_mode))
 
     if not elf_path.is_file():
         raise ValueError(f"No practice mod available for combination {version.name} and {practice_mode.name}.")
