@@ -14,21 +14,36 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Practice Mod ELFs
 
+    strategy:
+      matrix:
+        game_version:
+          gc_ntsc
+          # gc_pal
+        
+        practice_mod_mode:
+          disabled
+          full
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
           submodules: 'recursive'
+      
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
 
       - name: Build
-        run: ./build-elf.sh src/open_prime_rando_practice_mod/elfs/gc_ntsc_full.elf
+        run: uv run build_elf.py src/open_prime_rando_practice_mod/elfs -v ${{ matrix.game_version }} -m ${{ matrix.practice_mod_mode }}
 
       - name: Store the elf
         uses: actions/upload-artifact@v7
         with:
-          name: practice-mod-elf
-          path: src/open_prime_rando_practice_mod/elfs/gc_ntsc_full.elf
+          name: practice-mod-elf-${{ matrix.game_version }}-${{ matrix.practice_mod_mode }}
+          path: src/open_prime_rando_practice_mod/elfs/${{ matrix.game_version }}_${{ matrix.practice_mod_mode }}.elf
 
   wheel:
     runs-on: ubuntu-latest
@@ -56,8 +71,9 @@ jobs:
       - name: Download the elf
         uses: actions/download-artifact@v7
         with:
-          name: practice-mod-elf
+          pattern: practice-mod-elf-*
           path: src/open_prime_rando_practice_mod/elfs/
+          merge-multiple: true
 
       - name: build
         run: uv build
