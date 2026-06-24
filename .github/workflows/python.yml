@@ -16,13 +16,9 @@ jobs:
 
     strategy:
       matrix:
-        game_version:
-          gc_ntsc
-          # gc_pal
+        game_version: [gc_ntsc] # TODO: gc_pal
         
-        practice_mod_mode:
-          disabled
-          full
+        practice_mod_mode: [disabled,full]
 
     steps:
       - name: Checkout
