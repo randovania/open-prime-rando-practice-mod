@@ -54,7 +54,7 @@ jobs:
           python-version: "3.13"
 
       - name: Download the elf
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: practice-mod-elf
           path: src/open_prime_rando_practice_mod/elfs/
@@ -80,7 +80,7 @@ jobs:
           fetch-depth: 0
   
       - name: Download all the dists
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: python-package-distributions
           path: dist/
@@ -107,7 +107,7 @@ jobs:
     
     steps:
       - name: Download all the dists
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: python-package-distributions
           path: dist/
